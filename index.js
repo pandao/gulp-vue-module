@@ -22,14 +22,14 @@ function getAttribute (node, name) {
 
 module.exports = function(options) {
     var defaults = {
-        debug         : false,               // Debug mode
-        amd           : false,               // AMD style, Define module name and deps
-        define        : true,                // Using define() wrapper the module, false for Node.js (CommonJS style)
-        defineName    : false,               // Define the module name
-        indent        : '    ',              // Indent whitespace
-        headerComment : true,                // Using <header-comment> Insert the header comments
+        debug              : false,               // Debug mode
+        amd                : false,               // AMD style, Define module name and deps
+        define             : true,                // Using define() wrapper the module, false for Node.js (CommonJS style)
+        defineName         : false,               // Define the module name
+        indent             : '    ',              // Indent whitespace
+        headerComment      : true,                // Using <header-comment> Insert the header comments
         templateReplaceTag : '__template__', // vue component template replace tag
-        loadCSSMethod : 'require.loadCSS'    // define the load css method for require
+        loadCSSMethod      : 'require.loadCSS'    // define the load css method for require
     };
 
     var settings = Object.assign({}, defaults, options),
