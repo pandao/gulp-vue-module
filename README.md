@@ -33,6 +33,8 @@ gulp.task('default', ['vue']);
 
 `app.vue` :
 
+> tag order : `<style>` > `<template>` > `<script>`, `<tempate>` tag must be at `<script>` tag before.
+
 ```html
 <template>
     <div class="app" @click="click">
