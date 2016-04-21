@@ -1,0 +1,29 @@
+{
+  "name": "gulp-vue-module",
+  "version": "0.1.0",
+  "homepage": "https://github.com/pandao/gulp-vue-module",
+  "description": "Gulp plugin for Vue.js `*.vue` component file complie to AMD / CMD / CommonJS module.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "vue",
+    "amd",
+    "module",
+    "component",
+    "gulpplugin"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/pandao/gulp-vue-module.git"
+  },
+  "author": "Pandao",
+  "license": "MIT",
+  "dependencies": {
+    "gulp-util": "^3.0.7",
+    "node-sass": "^3.4.2",
+    "parse5": "^2.1.5",
+    "through2": "^2.0.1"
+  }
+}
