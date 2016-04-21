@@ -187,7 +187,6 @@ module.exports = function(options) {
                 moduleContent = '';
             
             if (typeof contents.style === "string" && contents.style != "") {
-                console.log( contents.style);
                 loadCSS = indent + settings.loadCSSMethod + '('+contents.style+');\n\n';
             }
             
