@@ -36,6 +36,19 @@ gulp.task('default', ['vue']);
 > tag order : `<style>` > `<template>` > `<script>`, `<tempate>` tag must be at `<script>` tag before.
 
 ```html
+<style lang="scss">
+$color:red;
+
+.card {
+    backround: $color;
+    
+    > .head {
+        color: $color;
+        background: yellow;
+    }
+}
+</style>
+
 <template>
     <div class="app" @click="click">
         <p>{{a}}</p>
@@ -65,19 +78,6 @@ gulp.task('default', ['vue']);
         template : '__template__'
     });
 </script>
-
-<style lang="scss">
-$color:red;
-
-.card {
-    backround: $color;
-    
-    > .head {
-        color: $color;
-        background: yellow;
-    }
-}
-</style>
 ```
 > `<template>` tag unsupport set lang attribute, support set `include="/path/to/xxx.xxx"` attribute.
 > 
