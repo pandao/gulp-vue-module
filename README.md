@@ -79,6 +79,7 @@ $color:red;
     });
 </script>
 ```
+
 > `<template>` tag unsupport set lang attribute, support set `include="/path/to/xxx.xxx"` attribute.
 > 
 > `<script>` tag unsupport set lang attribute, so you can't use ES6 syntax;
