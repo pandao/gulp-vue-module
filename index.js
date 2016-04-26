@@ -102,6 +102,8 @@ module.exports = function(options) {
                             }
                         }
                         else if (lang && (lang === "sass" || lang === "scss")) {
+                            contents.style = [];
+
                             style.split("\n").forEach(function(line){
                                 if (line) contents.style.push(line);
                             });

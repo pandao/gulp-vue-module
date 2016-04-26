@@ -1,6 +1,6 @@
 {
   "name": "gulp-vue-module",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "homepage": "https://github.com/pandao/gulp-vue-module",
   "description": "Gulp plugin for Vue.js `*.vue` component file complie to AMD / CMD / CommonJS module.",
   "main": "index.js",
