@@ -23,6 +23,7 @@ function getAttribute (node, name) {
 module.exports = function(options) {
     var defaults = {
         debug              : false,               // Debug mode
+        transSingle        : true,                // Trans single quote to '&#39;'
         amd                : false,               // AMD style, Define module name and deps
         define             : true,                // Using define() wrapper the module, false for Node.js (CommonJS style)
         defineName         : false,               // Define the module name
@@ -49,7 +50,7 @@ module.exports = function(options) {
 
         if (file.isBuffer()) {
             if (debug) {
-                console.log(LOG_PREFIX, "target =>", file.path);
+                console.log(LOG_PREFIX, 'target =>', file.path);
             }
             
             var content  = file.contents.toString(encoding),
@@ -76,67 +77,67 @@ module.exports = function(options) {
                 var href = getAttribute(node, 'href');
                 var src  = getAttribute(node, 'src');
                 
-                if (type === "header-comment") {
+                if (type === 'header-comment') {
                     headerComment = parse5.serialize(node);
                 }
                 
                 if (componentTags.indexOf(type) >= 0) {
                     tags[type] = true;
                     
-                    if (type === "style") {
+                    if (type === 'style') {
                         var style = parse5.serialize(node);
                         
-                        if (!lang || lang === "css") {
-                            style.split("\n").forEach(function(line){
+                        if (!lang || lang === 'css') {
+                            style.split('\n').forEach(function(line){
                                 if (line) contents.style.push(line.trim());
                             });
                             
-                            style = contents.style.join("");
+                            style = contents.style.join('');
                             
-                            if (style != "") {
+                            if (style != '') {
                                 contents.style = '{content : "' + style + '"}';
                             }
 
-                            if (href && href !== "") {
+                            if (href && href !== '') {
                                 contents.style = '{url : "' + href + '"}';
                             }
                         }
-                        else if (lang && (lang === "sass" || lang === "scss")) {
+                        else if (lang && (lang === 'sass' || lang === 'scss')) {
                             contents.style = [];
 
-                            style.split("\n").forEach(function(line){
+                            style.split('\n').forEach(function(line){
                                 if (line) contents.style.push(line);
                             });
                             
                             var result,
                                 sassRenderOptions = {
-                                    outputStyle    : "compressed",
-                                    indentedSyntax : (lang === "sass") ? true : false,
+                                    outputStyle    : 'compressed',
+                                    indentedSyntax : (lang === 'sass') ? true : false,
                                 };
 
                             if (href) {
                                 sassRenderOptions.file = href;
                             } else {
-                                sassRenderOptions.data = contents.style.join("\n");
+                                sassRenderOptions.data = contents.style.join('\n');
                             }
 
                             result = sass.renderSync(sassRenderOptions);
-                            result = result.css.toString().replace("\n", "");
+                            result = result.css.toString().replace('\n', '');
 
-                            if (result !== "") {
+                            if (result !== '') {
                                 contents.style = '{content : "' + result + '"}';
                             }
                         }
                     }
                     
-                    if (type === "template") {
+                    if (type === 'template') {
                         includeFileName = getAttribute(node, 'include');
                         
                         if (includeFileName) {
                             var tpl = fs.readFileSync(includeFileName, 'utf-8');
                             
                             if (!tpl) {
-                                console.error(LOG_PREFIX, "read template file error =>", includeFileName);
+                                console.error(LOG_PREFIX, 'read template file error =>', includeFileName);
                             }
                         } else {
                             var treeAdapter = parse5.treeAdapters.default,
@@ -152,23 +153,25 @@ module.exports = function(options) {
                             if (line) contents.template.push(line.trim());
                         });
 
-                        contents.template = contents.template.join("").toString().replace(/'/g, "&#39;");
+                        contents.template = settings.transSingle
+                            ?contents.template.join('').toString().replace(/'/g, '&#39;')
+                            :contents.template.join('').toString().replace(/('|\\)/g, '\\$1').replace(/\r/g, '\\r').replace(/\n/g, '\\n');
                     }
                     
-                    if (type === "script") {
+                    if (type === 'script') {
                         moduleName  = getAttribute(node, 'module-name');
                         moduleDeps  = getAttribute(node, 'module-deps');
 
                         var script = parse5.serialize(node);
                         
-                        if (script.split("\n").length <= 2) {
+                        if (script.split('\n').length <= 2) {
                             scriptEmpty = true;
-                            script      = indent + "module.exports = {\n" + indent + indent + "template : '" + templateReplaceTag + "'\n" + indent + "};\n";
+                            script      = indent + 'module.exports = {\n' + indent + indent + 'template : \'' + templateReplaceTag + '\'\n' + indent + '};\n';
                         }
                         
-                        script.split("\n").forEach(function(line){
-                            if (line.trim() != "") {
-                                line = line.replace(new RegExp(templateReplaceTag, "gi"), contents.template);
+                        script.split('\n').forEach(function(line){
+                            if (line.trim() != '') {
+                                line = line.replace(new RegExp(templateReplaceTag, 'gi'), contents.template);
                                 contents.script.push(line);
                             }
                         });
@@ -177,18 +180,18 @@ module.exports = function(options) {
             });
             
             if (settings.headerComment) {
-                headerComment = headerComment.replace("\n", '');
+                headerComment = headerComment.replace('\n', '');
             } else {
                 headerComment = '';
             }
             
-            var script        = contents.script.join("\n"), 
+            var script        = contents.script.join('\n'), 
                 deps          = '', 
                 loadCSS       = '', 
                 defineName    = '',
                 moduleContent = '';
             
-            if (typeof contents.style === "string" && contents.style != "") {
+            if (typeof contents.style === 'string' && contents.style != '') {
                 loadCSS = indent + settings.loadCSSMethod + '('+contents.style+');\n\n';
             }
             
@@ -203,7 +206,7 @@ module.exports = function(options) {
                     deps.push('"' + dep + '"');
                 });
                 
-                deps = "[" + deps.join(", ") + "], ";
+                deps = '[' + deps.join(', ') + '], ';
             }
             
             if (settings.define) {
