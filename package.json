@@ -1,7 +1,7 @@
 {
-  "name": "gulp-vue-module",
+  "name": "gulp-vue-module-microdreams",
   "version": "0.1.3",
-  "homepage": "https://github.com/Pandao/gulp-vue-module-microdreams",
+  "homepage": "https://github.com/geektheripper/gulp-vue-module",
   "description": "Gulp plugin for Vue.js `*.vue` component file complie to AMD / CMD / CommonJS module.",
   "main": "index.js",
   "scripts": {
