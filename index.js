@@ -29,7 +29,8 @@ module.exports = function(options) {
         indent             : '    ',              // Indent whitespace
         headerComment      : true,                // Using <header-comment> Insert the header comments
         templateReplaceTag : '__template__', // vue component template replace tag
-        loadCSSMethod      : 'require.loadCSS'    // define the load css method for require
+        loadCSSMethod      : 'require.loadCSS',    // define the load css method for require
+        externalRequire      : false            // don't pass require as a parameter
     };
 
     var settings = Object.assign({}, defaults, options),
@@ -207,8 +208,14 @@ module.exports = function(options) {
             }
             
             if (settings.define) {
-                moduleContent = 'define(' + defineName + deps + 'function(require, exports, module) {\n' + loadCSS + script+'\n});';
-            } else {
+                if(settings.externalRequire){
+                    moduleContent = 'define(' + defineName + deps + 'function('+ moduleDeps +') {\n' + loadCSS + script+'\n});';
+                }
+                else {
+                    moduleContent = 'define(' + defineName + deps + 'function(require, exports, module) {\n' + loadCSS + script+'\n});';
+                }
+            } 
+            else {
                 moduleContent = script;
             }
 
