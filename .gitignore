@@ -36,3 +36,5 @@ node_modules
 backup
 temp
 tests/node_modules
+.vscode
+.idea

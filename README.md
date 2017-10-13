@@ -79,8 +79,6 @@ $color:red;
     });
 </script>
 ```
->You can set `externalRequire` to true and inject `vue` into the file insted of requiring it internally
-
 > `<template>` tag unsupport set lang attribute, support set `include="/path/to/xxx.xxx"` attribute.
 > 
 > `<script>` tag unsupport set lang attribute, so you can't use ES6 syntax;
@@ -153,16 +151,19 @@ require.loadCSS = function(config) {
 
 ```javascript
 {
-    debug              : false,            // Debug mode
-    amd                : false,            // AMD style, Define module name and deps
-    define             : true,             // Using define() wrapper the module, false for Node.js (CommonJS style)
-    defineName         : false,            // Define the module name
-    indent             : '    ',           // Indent whitespace
-    headerComment      : true,             // Using <header-comment> Insert the header comments
-    templateReplaceTag : '__template__', // vue component template replace tag
-    loadCSSMethod      : 'require.loadCSS' // define the load css method for require
+    debug              : false,             // Debug mode
+    amd                : false,             // AMD style, Define module name and deps
+    define             : true,              // Using define() wrapper the module, false for Node.js (CommonJS style)
+    defineName         : false,             // Define the module name
+    indent             : '    ',            // Indent whitespace
+    headerComment      : true,              // Using <header-comment> Insert the header comments
+    templateReplaceTag : '__template__',    // vue component template replace tag
+    loadCSSMethod      : 'require.loadCSS', // define the load css method for require
+    externalRequire    : false              // don't pass require as a parameter
 }
 ```
+
+> You can set `externalRequire` to true and inject `vue` into the file insted of requiring it internally.
 
 ### Changes
 

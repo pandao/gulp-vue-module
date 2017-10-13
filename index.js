@@ -28,9 +28,9 @@ module.exports = function(options) {
         defineName         : false,               // Define the module name
         indent             : '    ',              // Indent whitespace
         headerComment      : true,                // Using <header-comment> Insert the header comments
-        templateReplaceTag : '__template__', // vue component template replace tag
-        loadCSSMethod      : 'require.loadCSS',    // define the load css method for require
-        externalRequire      : false            // don't pass require as a parameter
+        templateReplaceTag : '__template__',      // vue component template replace tag
+        loadCSSMethod      : 'require.loadCSS',   // define the load css method for require
+        externalRequire    : false                // don't pass require as a parameter
     };
 
     var settings = Object.assign({}, defaults, options),
