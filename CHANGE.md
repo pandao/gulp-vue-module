@@ -11,3 +11,7 @@ Release v0.1.0
 ### v0.1.2
 
 - fixed `<style>` tag bug;
+
+### v0.1.3
+
+- make single quote encode configurable

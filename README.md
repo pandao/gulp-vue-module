@@ -154,6 +154,7 @@ require.loadCSS = function(config) {
 ```javascript
 {
     debug              : false,            // Debug mode
+    transSingle        : true,             // Trans single quote to '&#39;'
     amd                : false,            // AMD style, Define module name and deps
     define             : true,             // Using define() wrapper the module, false for Node.js (CommonJS style)
     defineName         : false,            // Define the module name

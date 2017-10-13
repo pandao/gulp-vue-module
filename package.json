@@ -1,7 +1,7 @@
 {
-  "name": "gulp-vue-module",
-  "version": "0.1.2",
-  "homepage": "https://github.com/pandao/gulp-vue-module",
+  "name": "gulp-vue-module-microdreams",
+  "version": "0.1.3",
+  "homepage": "https://github.com/geektheripper/gulp-vue-module",
   "description": "Gulp plugin for Vue.js `*.vue` component file complie to AMD / CMD / CommonJS module.",
   "main": "index.js",
   "scripts": {
@@ -16,7 +16,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/pandao/gulp-vue-module.git"
+    "url": "git://github.com/geektheripper/gulp-vue-module.git"
   },
   "author": "Pandao",
   "license": "MIT",
