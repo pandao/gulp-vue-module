@@ -79,6 +79,7 @@ $color:red;
     });
 </script>
 ```
+>You can set `externalRequire` to true and inject `vue` into the file insted of requiring it internally
 
 > `<template>` tag unsupport set lang attribute, support set `include="/path/to/xxx.xxx"` attribute.
 > 
