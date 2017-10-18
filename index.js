@@ -208,14 +208,12 @@ module.exports = function(options) {
             }
             
             if (settings.define) {
-                if(settings.externalRequire){
+                if (settings.externalRequire) {
                     moduleContent = 'define(' + defineName + deps + 'function('+ moduleDeps +') {\n' + loadCSS + script+'\n});';
-                }
-                else {
+                } else {
                     moduleContent = 'define(' + defineName + deps + 'function(require, exports, module) {\n' + loadCSS + script+'\n});';
                 }
-            } 
-            else {
+            } else {
                 moduleContent = script;
             }
 
