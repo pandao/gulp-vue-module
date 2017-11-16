@@ -146,7 +146,11 @@ module.exports = function(options) {
                             treeAdapter.appendChild(docFragment, node);
 
                             var tpl = parse5.serialize(docFragment);
-                            tpl = tpl.replace('<template>', '').replace('</template>', '');
+                            
+                            tpl = tpl.replace('<template>', '');
+                            
+                            var lastTemplateCloseTagIndex = tpl.lastIndexOf('</template>');
+                            tpl = tpl.substring(0, lastTemplateCloseTagIndex);
                         }
                             
                         tpl.split("\n").forEach(function(line){
