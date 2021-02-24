@@ -153,7 +153,7 @@ module.exports = function(options) {
                             if (line) contents.template.push(line.trim());
                         });
 
-                        contents.template = contents.template.join("").toString().replace(\(<\/template>)(?!.*\1)\, '').replace(/'/g, "\\'");
+                        contents.template = contents.template.join("").toString().replace(/(<\/template>)(?!.*\1)/, '').replace(/'/g, "\\'");
                     }
                     
                     if (type === "script") {
