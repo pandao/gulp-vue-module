@@ -146,14 +146,14 @@ module.exports = function(options) {
                             treeAdapter.appendChild(docFragment, node);
 
                             var tpl = parse5.serialize(docFragment);
-                            tpl = tpl.replace('<template>', '').replace('</template>', '');
+                            tpl = tpl.replace('<template>', '');
                         }
                             
                         tpl.split("\n").forEach(function(line){
                             if (line) contents.template.push(line.trim());
                         });
 
-                        contents.template = contents.template.join("").toString().replace(/'/g, "&#39;");
+                        contents.template = contents.template.join("").toString().replace(/(<\/template>)(?!.*\1)/, '').replace(/'/g, "\\'");
                     }
                     
                     if (type === "script") {
